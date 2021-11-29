@@ -1,5 +1,3 @@
-library flex_with_main_child;
-
 import 'package:flutter/widgets.dart';
 
 class FlexWithMainChild extends StatefulWidget {
