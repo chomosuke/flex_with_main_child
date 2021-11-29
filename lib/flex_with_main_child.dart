@@ -1,7 +1,3 @@
-library flex_with_main_child;
-
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
-}
+export 'src/flex_with_main_child.dart';
+export 'src/column_with_main_child.dart';
+export 'src/row_with_main_child.dart';
