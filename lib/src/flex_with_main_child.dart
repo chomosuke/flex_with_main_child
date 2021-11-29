@@ -45,7 +45,6 @@ class _FlexWithMainChildState extends State<FlexWithMainChild> {
       setState(() {
         _mainChildSize =
             (_key.currentContext!.findRenderObject()! as RenderBox).size;
-        debugPrint('${_mainChildSize!.width}');
       });
     });
   }
