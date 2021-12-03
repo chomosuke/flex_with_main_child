@@ -49,7 +49,7 @@ ColumnWithMainChild(
 ),
 ```
 
-The above code will give:<br/>![example](https://raw.githubusercontent.com/chomosuke/flex_with_main_child/99588fb2be1b420485f6dccc591af53775139bbc/example.png)
+The above code will give:<br/>![example](https://raw.githubusercontent.com/chomosuke/flex_with_main_child/master/example.png)
 
 ## How it works
 
