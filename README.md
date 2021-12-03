@@ -28,6 +28,8 @@ Add `flex_with_main_child: <version>` under `dependencies` in your `pubspec.yaml
 
 The 3 classes' usage are exactly identical to their counter part in flutter/widgets.dart, except they have a mainChild which will define their cross axis size.
 
+### Example
+
 ```dart
 ColumnWithMainChild(
   // ColumnWithMainChild have the same parameters as Column
