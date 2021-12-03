@@ -1,7 +1,7 @@
 name: flex_with_main_child
-description: A new Flutter package project.
-version: 0.0.1
-homepage:
+description: A Flex (i.e. Column or Row) that sizes itself to its main child in the cross axis direction.
+version: 0.1.0
+repository: https://github.com/chomosuke/flex_with_main_child
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
