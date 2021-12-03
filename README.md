@@ -11,29 +11,21 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages). 
 -->
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
-
-## Features
-
-TODO: List what your package can do. Maybe include images, gifs, or videos.
-
-## Getting started
-
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+A Flex (i.e. Column or Row) that sizes itself to its main child in the cross axis direction.
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
+You want this: ![What you want] <!-- TODO: finish this after the example is done. -->
+
 
 ```dart
 const like = 'sample';
 ```
 
+## How it works
+
+It first renders a flex with the `mainChild` as its only children offstage. It then measure the cross axis size of that flex, and make a new flex with `childrensBefore`, `mainChild` and `childresAfter` in a `SizedBox` with the cross axis size set to the measured value.
+
 ## Additional information
 
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
+Note that SizedBox sometimes will be forced to fit parent (e.g. when the parent is the screen). When this happen, place the FlexWithMainChild into a Center or some other intermediate containers. 
