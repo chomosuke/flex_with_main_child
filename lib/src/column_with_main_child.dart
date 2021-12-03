@@ -12,8 +12,8 @@ class ColumnWithMainChild extends FlexWithMainChild {
     TextBaseline? textBaseline,
     Clip clipBehavior = Clip.none,
     required Widget mainChild,
-    List<Widget> childrenBefore = const <Widget>[],
-    List<Widget> childrenAfter = const <Widget>[],
+    List<Widget> childrenAbove = const <Widget>[],
+    List<Widget> childrenBelow = const <Widget>[],
   }) : super(
           key: key,
           direction: Axis.vertical,
@@ -24,8 +24,8 @@ class ColumnWithMainChild extends FlexWithMainChild {
           verticalDirection: verticalDirection,
           textBaseline: textBaseline,
           clipBehavior: clipBehavior,
-          childrenBefore: childrenBefore,
-          childrenAfter: childrenAfter,
+          childrenBefore: childrenAbove,
+          childrenAfter: childrenBelow,
           mainChild: mainChild,
         );
 }
