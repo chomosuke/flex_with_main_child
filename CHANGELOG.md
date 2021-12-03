@@ -1,3 +1,3 @@
 ## 0.0.1
 
-* TODO: Describe initial release.
+Migrated code from my other project, added column and row, and wrote an examlpe app.
