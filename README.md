@@ -13,14 +13,43 @@ and the Flutter guide for
 
 A Flex (i.e. Column or Row) that sizes itself to its main child in the cross axis direction.
 
+## Features
+
+This package contains three classes:
+ - `FlexWithMainChild`
+ - `ColumnWithMainChild`
+ - `RowWithMainChild`
+
+## Getting started
+
+Add `flex_with_main_child: <version>` under `dependencies` in your `pubspec.yaml`.
+
 ## Usage
 
-You want this: ![What you want] <!-- TODO: finish this after the example is done. -->
-
+The 3 classes' usage are exactly identical to their counter part in flutter/widgets.dart, except they have a mainChild which will define their cross axis size.
 
 ```dart
-const like = 'sample';
+ColumnWithMainChild(
+  // ColumnWithMainChild have the same parameters as Column
+  mainAxisAlignment: MainAxisAlignment.center,
+  // except children, obviously.
+  childrenAbove: [
+    // Because the underlying implementation uses Flex, any child that work
+    // in Column will work exactly the same way in ColumnWithMainChild.
+    Spacer(flex: 5),
+    Text('very very very very long description'),
+    Spacer(),
+  ],
+  mainChild: Text('short Title'),
+  childrenBelow: [
+    Spacer(),
+    Text('another very very very very very long text'),
+    Spacer(flex: 10),
+  ],
+),
 ```
+
+The above code will give ![example](https://github.com/chomosuke/flex_with_main_child/example.png?raw=true)
 
 ## How it works
 
