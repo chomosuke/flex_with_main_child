@@ -58,3 +58,7 @@ It first renders a flex with the `mainChild` as its only children offstage. It t
 ## Additional information
 
 Note that SizedBox sometimes will be forced to fit parent (e.g. when the parent is the screen). When this happen, place the FlexWithMainChild into a Center or some other intermediate containers. 
+
+## Contribution
+
+All pull requests / issues are welcome.
