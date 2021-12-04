@@ -26,7 +26,7 @@ Add `flex_with_main_child: <version>` under `dependencies` in your `pubspec.yaml
 
 ## Usage
 
-The 3 classes' usage are exactly identical to their counter part in flutter/widgets.dart, except they have a mainChild which will define their cross axis size.
+The 3 classes' usage are exactly identical to their counterparts in flutter/widgets.dart, except they have a mainChild which will define their cross axis size.
 
 ### Example
 
@@ -56,7 +56,7 @@ The above code will give:
 
 ## How it works
 
-It first renders a flex with the `mainChild` as its only children offstage. It then measure the cross axis size of that flex, and make a new flex with `childrensBefore`, `mainChild` and `childresAfter` in a `SizedBox` with the cross axis size set to the measured value.
+It first renders a flex with the `mainChild` as its only children offstage. It then measure the cross axis size of that flex, and make a new flex with `childrenBefore`, `mainChild` and `childrenAfter` in a `SizedBox` with the cross axis size set to the measured value.
 
 ## Additional information
 

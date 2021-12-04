@@ -9,3 +9,7 @@ Improved README.
 ## 0.1.2
 
 Added dartdoc.
+
+## 0.1.3
+
+Fixed typo in README.md
