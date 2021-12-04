@@ -5,3 +5,7 @@ Migrated code from my other project, added column and row, and wrote an examlpe 
 ## 0.1.1
 
 Improved README.
+
+## 0.1.2
+
+Added dartdoc.

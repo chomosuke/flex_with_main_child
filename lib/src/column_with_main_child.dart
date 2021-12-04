@@ -1,7 +1,10 @@
 import './flex_with_main_child.dart';
 import 'package:flutter/widgets.dart';
 
+/// A widget that's identical to `Column` in `flutter/widgets.dart` except it
+/// tries to match the its width with its `mainChild`.
 class ColumnWithMainChild extends FlexWithMainChild {
+  /// Identical constructor to `Column` in `flutter/widgets.dart`.
   const ColumnWithMainChild({
     Key? key,
     MainAxisAlignment mainAxisAlignment = MainAxisAlignment.start,

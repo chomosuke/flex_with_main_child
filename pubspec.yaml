@@ -1,6 +1,6 @@
 name: flex_with_main_child
 description: A Flex (i.e. Column or Row) that sizes itself to its main child in the cross axis direction.
-version: 0.1.1
+version: 0.1.2
 repository: https://github.com/chomosuke/flex_with_main_child
 
 environment:

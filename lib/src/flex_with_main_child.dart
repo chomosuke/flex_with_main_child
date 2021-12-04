@@ -1,5 +1,7 @@
 import 'package:flutter/widgets.dart';
 
+/// A widget that's identical to `Flex` in `flutter/widgets.dart` except it
+/// tries to match the its cross axis size with its `mainChild`.
 class FlexWithMainChild extends StatefulWidget {
   final Axis direction;
   final MainAxisAlignment mainAxisAlignment;
@@ -13,6 +15,7 @@ class FlexWithMainChild extends StatefulWidget {
   final List<Widget> childrenBefore;
   final List<Widget> childrenAfter;
 
+  /// Identical constructor to `Flex` in `flutter/widgets.dart`.
   const FlexWithMainChild({
     Key? key,
     required this.direction,
@@ -51,7 +54,7 @@ class _FlexWithMainChildState extends State<FlexWithMainChild> {
   Widget build(BuildContext context) {
     return _mainChildSize == null
         ? Offstage(
-            child: getFlex(),
+            child: _getFlex(),
           )
         : SizedBox(
             width: widget.direction == Axis.vertical
@@ -60,11 +63,11 @@ class _FlexWithMainChildState extends State<FlexWithMainChild> {
             height: widget.direction == Axis.horizontal
                 ? _mainChildSize!.height
                 : null,
-            child: getFlex(),
+            child: _getFlex(),
           );
   }
 
-  Widget getFlex() => Flex(
+  Widget _getFlex() => Flex(
         key: _key,
         direction: widget.direction,
         mainAxisAlignment: widget.mainAxisAlignment,

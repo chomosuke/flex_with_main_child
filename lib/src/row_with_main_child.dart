@@ -1,7 +1,10 @@
 import './flex_with_main_child.dart';
 import 'package:flutter/widgets.dart';
 
+/// A widget that's identical to `Row` in `flutter/widgets.dart` except it
+/// tries to match the its height with its `mainChild`.
 class RowWithMainChild extends FlexWithMainChild {
+  /// Identical constructor to `Row` in `flutter/widgets.dart`.
   const RowWithMainChild({
     Key? key,
     MainAxisAlignment mainAxisAlignment = MainAxisAlignment.start,
