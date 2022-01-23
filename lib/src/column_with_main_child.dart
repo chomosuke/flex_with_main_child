@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 
 /// A widget that's identical to `Column` in `flutter/widgets.dart` except it
 /// tries to match the its width with its `mainChild`.
+/// `mainChild` must have a GlobalKey attached for size measuring.
 class ColumnWithMainChild extends FlexWithMainChild {
   /// Identical constructor to `Column` in `flutter/widgets.dart`.
   const ColumnWithMainChild({
@@ -13,9 +14,8 @@ class ColumnWithMainChild extends FlexWithMainChild {
     TextDirection? textDirection,
     VerticalDirection verticalDirection = VerticalDirection.down,
     TextBaseline? textBaseline,
-    required Widget mainChild,
-    List<Widget> childrenAbove = const <Widget>[],
-    List<Widget> childrenBelow = const <Widget>[],
+    required GlobalKey mainChildKey,
+    required List<Widget> children,
   }) : super(
           key: key,
           direction: Axis.vertical,
@@ -25,8 +25,7 @@ class ColumnWithMainChild extends FlexWithMainChild {
           textDirection: textDirection,
           verticalDirection: verticalDirection,
           textBaseline: textBaseline,
-          childrenBefore: childrenAbove,
-          childrenAfter: childrenBelow,
-          mainChild: mainChild,
+          children: children,
+          mainChildKey: mainChildKey,
         );
 }

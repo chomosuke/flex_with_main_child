@@ -24,39 +24,45 @@ This package contains three classes:
 
 Add `flex_with_main_child: <version>` under `dependencies` in your `pubspec.yaml`.
 
+## How it works
+
+After it renders, it check if the crossAxisSize of the flex is the same as the size obtain from `mainChildKey`. If not, it'll render again with the crossAxisSize set to the size previously measured from `mainChildKey`. It'll keep rerendering until the size matches.
+
 ## Usage
 
-The 3 classes' usage are exactly identical to their counterparts in flutter/widgets.dart, except they have a mainChild which will define their cross axis size.
+The 3 classes' usage are exactly identical to their counterparts in flutter/widgets.dart, except they take in a mainChildKey which they will use to match their cross axis size to.
 
 ### Example
 
 ```dart
-ColumnWithMainChild(
-  // ColumnWithMainChild have the same parameters as Column
-  mainAxisAlignment: MainAxisAlignment.center,
-  // except children, obviously.
-  childrenAbove: [
-    // Because the underlying implementation uses Flex, any child that work
-    // in Column will work exactly the same way in ColumnWithMainChild.
-    Spacer(flex: 5),
-    Text('very very very very long description'),
-    Spacer(),
-  ],
-  mainChild: Text('short Title'),
-  childrenBelow: [
-    Spacer(),
-    Text('another very very very very very long text'),
-    Spacer(flex: 10),
-  ],
-),
+Widget build(BuildContext context) {
+  final mainChildKey = GlobalKey();
+
+  return ColumnWithMainChild(
+    // ColumnWithMainChild have the same parameters as Column
+    mainAxisAlignment: MainAxisAlignment.center,
+    // except children, obviously.
+    children: [
+      // Because the underlying implementation uses Flex, any child that work
+      // in Column will work exactly the same way in ColumnWithMainChild.
+      Spacer(flex: 5),
+      Text('very very very very long description'),
+      Spacer(),
+      Text(
+        'short Title',
+        key: mainChildKey, // you have to give mainChildKey to the main child
+      ),
+      Spacer(),
+      Text('another very very very very very long text'),
+      Spacer(flex: 10),
+    ],
+    mainChildKey: mainChildKey,
+  );
+}
 ```
 
 The above code will give:  
 ![example](https://raw.githubusercontent.com/chomosuke/flex_with_main_child/master/example.png)
-
-## How it works
-
-It first renders a flex with the `mainChild` as its only children offstage. It then measure the cross axis size of that flex, and make a new flex with `childrenBefore`, `mainChild` and `childrenAfter` in a `SizedBox` with the cross axis size set to the measured value.
 
 ## Additional information
 

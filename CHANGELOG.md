@@ -13,3 +13,9 @@ Added dartdoc.
 ## 0.1.3
 
 Fixed typo in README.md
+
+## 0.2.0
+
+FlexWithMainChild now measures mainChild size continuously with its key.
+
+Better documentation and diagnostic comming soon.

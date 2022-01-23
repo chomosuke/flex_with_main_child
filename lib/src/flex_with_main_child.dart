@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 
 /// A widget that's identical to `Flex` in `flutter/widgets.dart` except it
 /// tries to match the its cross axis size with its `mainChild`.
+/// `mainChild` must have a GlobalKey attached for size measuring.
 class FlexWithMainChild extends StatefulWidget {
   final Axis direction;
   final MainAxisAlignment mainAxisAlignment;
@@ -11,9 +12,8 @@ class FlexWithMainChild extends StatefulWidget {
   final VerticalDirection verticalDirection;
   final TextBaseline? textBaseline;
   final Clip clipBehavior;
-  final Widget mainChild;
-  final List<Widget> childrenBefore;
-  final List<Widget> childrenAfter;
+  final List<Widget> children;
+  final GlobalKey mainChildKey;
 
   /// Identical constructor to `Flex` in `flutter/widgets.dart`.
   const FlexWithMainChild({
@@ -26,9 +26,8 @@ class FlexWithMainChild extends StatefulWidget {
     this.verticalDirection = VerticalDirection.down,
     this.textBaseline,
     this.clipBehavior = Clip.none,
-    this.childrenBefore = const <Widget>[],
-    this.childrenAfter = const <Widget>[],
-    required this.mainChild,
+    required this.children,
+    required this.mainChildKey,
   }) : super(key: key);
 
   @override
@@ -36,59 +35,47 @@ class FlexWithMainChild extends StatefulWidget {
 }
 
 class _FlexWithMainChildState extends State<FlexWithMainChild> {
-  final GlobalKey _key = GlobalKey();
-  Size? _mainChildSize;
-
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance!.addPostFrameCallback((_) {
-      setState(() {
-        _mainChildSize =
-            (_key.currentContext!.findRenderObject()! as RenderBox).size;
-      });
-    });
-  }
+  double? crossAxisSize;
 
   @override
   Widget build(BuildContext context) {
-    return _mainChildSize == null
-        ? Offstage(
-            child: _getFlex(),
-          )
-        : SizedBox(
-            width: widget.direction == Axis.vertical
-                ? _mainChildSize!.width
-                : null,
-            height: widget.direction == Axis.horizontal
-                ? _mainChildSize!.height
-                : null,
-            child: _getFlex(),
-          );
+    WidgetsBinding.instance!.addPostFrameCallback((_) {
+      final double crossAxisSize;
+      if (widget.direction == Axis.vertical) {
+        crossAxisSize = (widget.mainChildKey.currentContext!.findRenderObject()!
+                as RenderBox)
+            .size
+            .width;
+      } else {
+        crossAxisSize = (widget.mainChildKey.currentContext!.findRenderObject()!
+                as RenderBox)
+            .size
+            .height;
+      }
+      if (this.crossAxisSize != crossAxisSize) {
+        setState(() {
+          this.crossAxisSize = crossAxisSize;
+        });
+      }
+    });
+    return SizedBox(
+      width: widget.direction == Axis.vertical ? crossAxisSize : null,
+      height: widget.direction == Axis.horizontal ? crossAxisSize : null,
+      child: _getFlex(),
+    );
   }
 
   Widget _getFlex() => Flex(
-        key: _key,
         direction: widget.direction,
         mainAxisAlignment: widget.mainAxisAlignment,
         mainAxisSize: widget.mainAxisSize,
         // this is to combat CrossAxisAlignment.stretch
         // which forces child to take up all the space
-        crossAxisAlignment: _mainChildSize == null
-            ? CrossAxisAlignment.center
-            : widget.crossAxisAlignment,
+        crossAxisAlignment: widget.crossAxisAlignment,
         textDirection: widget.textDirection,
         verticalDirection: widget.verticalDirection,
         textBaseline: widget.textBaseline,
         clipBehavior: widget.clipBehavior,
-        children: _mainChildSize == null
-            ? [
-                widget.mainChild,
-              ]
-            : [
-                ...widget.childrenBefore,
-                widget.mainChild,
-                ...widget.childrenAfter,
-              ],
+        children: widget.children,
       );
 }

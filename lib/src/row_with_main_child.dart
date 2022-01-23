@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 
 /// A widget that's identical to `Row` in `flutter/widgets.dart` except it
 /// tries to match the its height with its `mainChild`.
+/// `mainChild` must have a GlobalKey attached for size measuring.
 class RowWithMainChild extends FlexWithMainChild {
   /// Identical constructor to `Row` in `flutter/widgets.dart`.
   const RowWithMainChild({
@@ -13,9 +14,8 @@ class RowWithMainChild extends FlexWithMainChild {
     TextDirection? textDirection,
     VerticalDirection verticalDirection = VerticalDirection.down,
     TextBaseline? textBaseline,
-    required Widget mainChild,
-    List<Widget> childrenLeft = const <Widget>[],
-    List<Widget> childrenRight = const <Widget>[],
+    required GlobalKey mainChildKey,
+    required List<Widget> children,
   }) : super(
           key: key,
           direction: Axis.horizontal,
@@ -25,8 +25,7 @@ class RowWithMainChild extends FlexWithMainChild {
           textDirection: textDirection,
           verticalDirection: verticalDirection,
           textBaseline: textBaseline,
-          childrenBefore: childrenLeft,
-          childrenAfter: childrenRight,
-          mainChild: mainChild,
+          children: children,
+          mainChildKey: mainChildKey,
         );
 }
